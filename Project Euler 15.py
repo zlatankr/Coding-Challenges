@@ -44,6 +44,7 @@ def combos(z):
     return d
 
 def num_fifteen(p):
+    start_t = timeit.default_timer()
     j = combos(p)
     iterables = [j[values] for values in range(1,len(j)+1)]
     """
@@ -57,9 +58,7 @@ def num_fifteen(p):
                 a.append([subitem[0] + 1, subitem[1]])
             if subitem[1] + 1 < (p + 1):
                 a.append([subitem[0], subitem[1] + 1])
-            valid[str(subitem)] = a
-    start_t = timeit.default_timer()
-    
+            valid[str(subitem)] = a    
     """
     The values dict will store how many diffeent paths led to each point.
     We start the dict with the first two points.
