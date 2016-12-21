@@ -44,14 +44,14 @@ for i in xrange(15):
     tree[i] = triangle[x: x + i + 1]
     x += i+1
 
+forest = {}
+for i in xrange(len(tree)):
+    forest[i] = {}
+    for z in xrange(len(tree[i])):
+        forest[i][z] = tree[i][z]
 
 def iterate(n):
-    y = 1
     for i in range(n):
         for z in xrange(len(tree[i])):
             print list((tree[i][z], tree[i+1][z]))
-            print y
-            y += 1
-            print list((tree[i][z], tree[i+1][z+1]))
-            print y
-            y += 1
+            print list((tree[i][z], tree[i+1][z+1])) 
