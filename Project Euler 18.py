@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Dec 19 21:15:45 2016
-
 Find the maximum total from top to bottom of the triangle below:
 """
+
 triangle ='\
 75 \
 95 64 \
@@ -21,22 +20,24 @@ triangle ='\
 63 66 04 68 89 53 67 30 73 16 69 87 40 31 \
 04 62 98 27 23 09 70 98 73 93 38 53 60 04 23'
 
-triangle = triangle.split()
+import timeit
 
-triangle = [int(i) for i in triangle]
 
 # Let's see how many total paths there are:
-            
+        
 z = 1
 a = 0
 while a < 14:
     z = z*2
-    print 'a is', a
-    print 'z is', z
+    print 'for', a+2, 'rows in a triangle, there are', z, 'combinations.'
     a += 1
-z
 
-# Turn the triangle into a dictionary, where keys are depth:
+
+# Turn the triangle into a dictionary, where keys are depth of triangle:
+    
+triangle = triangle.split()
+
+triangle = [int(i) for i in triangle]
 
 tree = {}
 x = 0
@@ -44,14 +45,37 @@ for i in xrange(15):
     tree[i] = triangle[x: x + i + 1]
     x += i+1
 
-forest = {}
-for i in xrange(len(tree)):
-    forest[i] = {}
-    for z in xrange(len(tree[i])):
-        forest[i][z] = tree[i][z]
+# Our answer - note, this is the brue force answer...
 
-def iterate(n):
-    for i in range(n):
-        for z in xrange(len(tree[i])):
-            print list((tree[i][z], tree[i+1][z]))
-            print list((tree[i][z], tree[i+1][z+1])) 
+def number_18(n):
+    start_t = timeit.default_timer()
+    # our dict starts with the index of the first row of the triangle and the its value
+    combos = {'0': 75}
+    # starting with the second row of the triangle
+    for i in range(1, n):
+#        print 'i is', i
+        # we look at each key in our combos dectionary (each key is a possible path)
+        for x in combos.keys():
+#            print 'x is', x
+            # and look at the index of each number in the the row of the triangle
+            for z in xrange(len(tree[i])):
+#                print 'z is', z
+#                print 'value is', tree[i][z]
+                # if that index is equal to or just one greater than the last number in the key
+                # then we create a new key (valid path) whose value is the new sum of that path
+                if str(z) == x.split()[-1]:
+                    combos[x+' '+str(z)] = combos[x] + tree[i][z]
+#                    print 'new combos is', combos
+                if str(z - 1) == x.split()[-1]:
+                    combos[x+' '+str(z)] = combos[x] + tree[i][z]
+#                    print 'new combos is', combos
+#            print 'deleting x', x
+#            print 'deleting combos',combos[x]
+            # then we delete the key that we just evaluated in the dictionary
+            del(combos[x])
+#            print 'new combos is', combos  
+    print combos
+    print len(combos)
+    print 'Runtime > ', timeit.default_timer() - start_t, ' seconds'
+    return max(combos.values())
+    
