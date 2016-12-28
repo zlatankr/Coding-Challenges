@@ -11,18 +11,7 @@ The lexicographic permutations of 0, 1 and 2 are:
 
 What is the millionth lexicographic permutation of the digits 0, 1, 2, 3, 4, 5, 6, 7, 8 and 9?
 """
-import math
-
-math.factorial(10)/math.factorial(10-10) # there are 3628800 permutations
-
-numbers = range(0, 10)
-
-
-start = 9876543210
-count = 1
-spot = 8
-
-a = ['a', 'b', 'c']
+import timeit
 
 def all_perms(elements):
     if len(elements) <=1:
@@ -30,30 +19,12 @@ def all_perms(elements):
     else:
         for perm in all_perms(elements[1:]):
             for i in range(len(elements)):
-                # nb elements[0:1] works in both string and list contexts
                 yield perm[:i] + elements[0:1] + perm[i:]
 
-count = 1
-for i in xrange(9876543210, 0, -1):
-    if len(set(str(i))) < len(str(i)):
-        pass
-    else:
-        count += 1
-    if count == 628802:
-        print 'number is', i
-        break
-
-43210
-    
-def perms(items):
-    if len(items) <= 1:
-        return items[0]
-    else:
-        for i in items:
-            print i, perms(items[:items.index(i)]+items[items.index(i)+1:])
-    
-
-    
-    
-    
-    
+def number_24():
+    start = timeit.default_timer()
+    a = list(all_perms(str(9876543210)))
+    a.sort()
+    print timeit.default_timer() - start, 'seconds'
+    print a[999999]
+    return
