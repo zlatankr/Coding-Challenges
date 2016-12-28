@@ -54,10 +54,7 @@ def perms(items):
         for i in items:
             return i, perms(items.remove(i))
     
-    
-a = ['a', 'b']    
 
-a.sort(reverse = True)    
     
     
     
