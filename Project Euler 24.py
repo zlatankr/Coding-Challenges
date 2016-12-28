@@ -49,10 +49,10 @@ def perms(items):
     if len(items) == 2:
         a = sorted(items, reverse = True)
         b = sorted(items)
-        print a, b
+        return a, b
     else:
         for i in items:
-            print i, perms(items.remove(i))
+            return i, perms(items.remove(i))
     
     
 a = ['a', 'b']    
