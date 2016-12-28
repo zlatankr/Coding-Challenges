@@ -46,13 +46,11 @@ for i in xrange(9876543210, 0, -1):
 43210
     
 def perms(items):
-    if len(items) == 2:
-        a = sorted(items, reverse = True)
-        b = sorted(items)
-        return a, b
+    if len(items) <= 1:
+        return items[0]
     else:
         for i in items:
-            return i, perms(items.remove(i))
+            print i, perms(items[:items.index(i)]+items[items.index(i)+1:])
     
 
     
