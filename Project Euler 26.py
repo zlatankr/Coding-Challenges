@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Mon Jan 02 12:01:08 2017
+Created on Mon Jan 02 12:01:08 9017
 
 A unit fraction contains 1 in the numerator. 
 The decimal representation of the unit fractions with denominators 2 to 10 are given:
@@ -45,40 +45,110 @@ in its decimal fraction part.
 """
 from decimal import *
 
-getcontext().prec = 200
+getcontext().prec = 905
 decimals = {}
 
 for i in xrange(2, 1000):
-    print 'i is', i
+   # print 'i is', i
     if i in decimals:
         pass
     elif float(1000) % i == 0:
         decimals[i] = 0
         decimals[int(float(1000)/i)] = 0
-    elif len(str(Decimal(1)/Decimal(i))) > 200:
+    elif len(str(Decimal(1)/Decimal(i))) > 900:
         a = 1
-        while a < 201:
-            print 'a is', a
+        while a < 900:
+            #print 'a is', a
             z = str(Decimal(1)/Decimal(i))[2:(2+a)]
             if int(z) == 0:
                 a += 1
             else:
                # print 'z is', z
-                z *= 200 / a
+                z *= 900 / a
                # print 'z is', z
-                z += z[0: 200 % a]
+                z += z[0: 900 % a]
                # print 'z is', z
                 z = Decimal('.' + z)
-               # print 'z is', z
-                if Decimal(str(Decimal(1)/Decimal(i))[:-1]) / z == 1:
+                #print 'z is', z
+                if str((Decimal(1)/Decimal(i)))[0:len(str(Decimal(z)))] == str(Decimal(z)):
                     decimals[i] = a
                     break
                 else:
                     a += 1
+        if a == 900:
+            a = 1
+            while a < 900:
+                #print 'a2 is', a
+                x = str(Decimal(1)/Decimal(i))[2]
+                z = str(Decimal(1)/Decimal(i))[3:(3+a)]
+                if int(z) == 0:
+                    a += 1
+                else:
+                   # print 'z is', z
+                    z *= 900 / a
+                   # print 'z is', z
+                    z += z[0: 900 % a]
+                   # print 'z is', z
+                    z = Decimal('.' + x + z)
+                    #print 'new z is', z
+                    #print 'len z', len(str(z))
+                    #print 'dividing', str(Decimal(1)/Decimal(i))
+                    #print 'len is', len(str(Decimal(1)/Decimal(i)))
+                    if str((Decimal(1)/Decimal(i)))[0:len(str(Decimal(z)))] == str(Decimal(z)):
+                        decimals[i] = a
+                        break
+                    else:
+                        a += 1
+        if a == 900:
+            a = 1
+            while a < 900:
+                #print 'a3 is', a
+                x = str(Decimal(1)/Decimal(i))[2:4]
+                z = str(Decimal(1)/Decimal(i))[4:(4+a)]
+                if int(z) == 0:
+                    a += 1
+                else:
+                   # print 'z is', z
+                    z *= 900 / a
+                   # print 'z is', z
+                    z += z[0: 900 % a]
+                   # print 'z is', z
+                    z = Decimal('.' + x + z)
+                    #print 'new2 z is', z
+                    #print 'len z', len(str(z))
+                    #print 'dividing', str(Decimal(1)/Decimal(i))
+                    #print 'len is', len(str(Decimal(1)/Decimal(i)))
+                    if str((Decimal(1)/Decimal(i)))[0:len(str(Decimal(z)))] == str(Decimal(z)):
+                        decimals[i] = a
+                        break
+                    else:
+                        a += 1
+        if a == 900:
+            a = 1
+            while a < 900:
+                #print 'a4 is', a
+                x = str(Decimal(1)/Decimal(i))[2:5]
+                z = str(Decimal(1)/Decimal(i))[5:(5+a)]
+                if int(z) == 0:
+                    a += 1
+                else:
+                   # print 'z is', z
+                    z *= 900 / a
+                   # print 'z is', z
+                    z += z[0: 900 % a]
+                   # print 'z is', z
+                    z = Decimal('.' + x + z)
+                    #print 'new3 z is', z
+                    #print 'len z', len(str(z))
+                    #print 'dividing', str(Decimal(1)/Decimal(i))
+                    #print 'len is', len(str(Decimal(1)/Decimal(i)))
+                    if str((Decimal(1)/Decimal(i)))[0:len(str(Decimal(z)))] == str(Decimal(z)):
+                        decimals[i] = a
+                        break
+                    else:
+                        a += 1           
 
-{i:decimals[i] for i in decimals if decimals[i]<>0}
-
-
+{i:decimals[i] for i in decimals if decimals[i]<>0}                 
 
 
 
