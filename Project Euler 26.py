@@ -43,9 +43,14 @@ in its decimal fraction part.
     - add n to dict with vale equal to value of while loop
 
 """
+# note: this is a horrible solution in so many ways, but it yielded the right 
+# answer so I'm moving on, for better or for worse. Electing to go for quantity
+# over quality
+
+
 from decimal import *
 
-getcontext().prec = 905
+getcontext().prec = 1905
 decimals = {}
 
 for i in xrange(2, 1000):
@@ -55,18 +60,18 @@ for i in xrange(2, 1000):
     elif float(1000) % i == 0:
         decimals[i] = 0
         decimals[int(float(1000)/i)] = 0
-    elif len(str(Decimal(1)/Decimal(i))) > 900:
+    elif len(str(Decimal(1)/Decimal(i))) > 1900:
         a = 1
-        while a < 900:
+        while a < 1900:
             #print 'a is', a
             z = str(Decimal(1)/Decimal(i))[2:(2+a)]
             if int(z) == 0:
                 a += 1
             else:
                # print 'z is', z
-                z *= 900 / a
+                z *= 1900 / a
                # print 'z is', z
-                z += z[0: 900 % a]
+                z += z[0: 1900 % a]
                # print 'z is', z
                 z = Decimal('.' + z)
                 #print 'z is', z
@@ -75,9 +80,9 @@ for i in xrange(2, 1000):
                     break
                 else:
                     a += 1
-        if a == 900:
+        if a == 1900:
             a = 1
-            while a < 900:
+            while a < 1900:
                 #print 'a2 is', a
                 x = str(Decimal(1)/Decimal(i))[2]
                 z = str(Decimal(1)/Decimal(i))[3:(3+a)]
@@ -85,9 +90,9 @@ for i in xrange(2, 1000):
                     a += 1
                 else:
                    # print 'z is', z
-                    z *= 900 / a
+                    z *= 1900 / a
                    # print 'z is', z
-                    z += z[0: 900 % a]
+                    z += z[0: 1900 % a]
                    # print 'z is', z
                     z = Decimal('.' + x + z)
                     #print 'new z is', z
@@ -99,9 +104,9 @@ for i in xrange(2, 1000):
                         break
                     else:
                         a += 1
-        if a == 900:
+        if a == 1900:
             a = 1
-            while a < 900:
+            while a < 1900:
                 #print 'a3 is', a
                 x = str(Decimal(1)/Decimal(i))[2:4]
                 z = str(Decimal(1)/Decimal(i))[4:(4+a)]
@@ -109,9 +114,9 @@ for i in xrange(2, 1000):
                     a += 1
                 else:
                    # print 'z is', z
-                    z *= 900 / a
+                    z *= 1900 / a
                    # print 'z is', z
-                    z += z[0: 900 % a]
+                    z += z[0: 1900 % a]
                    # print 'z is', z
                     z = Decimal('.' + x + z)
                     #print 'new2 z is', z
@@ -123,9 +128,9 @@ for i in xrange(2, 1000):
                         break
                     else:
                         a += 1
-        if a == 900:
+        if a == 1900:
             a = 1
-            while a < 900:
+            while a < 1900:
                 #print 'a4 is', a
                 x = str(Decimal(1)/Decimal(i))[2:5]
                 z = str(Decimal(1)/Decimal(i))[5:(5+a)]
@@ -133,9 +138,9 @@ for i in xrange(2, 1000):
                     a += 1
                 else:
                    # print 'z is', z
-                    z *= 900 / a
+                    z *= 1900 / a
                    # print 'z is', z
-                    z += z[0: 900 % a]
+                    z += z[0: 1900 % a]
                    # print 'z is', z
                     z = Decimal('.' + x + z)
                     #print 'new3 z is', z
@@ -148,20 +153,9 @@ for i in xrange(2, 1000):
                     else:
                         a += 1           
 
-{i:decimals[i] for i in decimals if decimals[i]<>0}                 
+nonz = {i:decimals[i] for i in decimals if (decimals[i]<>0) and (decimals[i]<>1899)}
 
-
-
-
-
-
-
-
-
-
-
-
-
+max(nonz, key=nonz.get)
 
 
 
