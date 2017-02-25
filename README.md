@@ -1,5 +1,5 @@
-###Project Euler Solutions
+###Coding Challenges Solutions
 
-This repo contains my solutions from [Project Euler](projecteuler.net).
+This repo contains separate folders for each coding challenge website I've participated in. 
 
-I've attempted to annotate the solutions as best as possible, though admittedly there is an opportunity for better documentation.
+Every _.py_ file should have enough information to inform the reader about the problem and the solution.
