@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 24 14:57:38 2017
-
-@author: User
+https://www.hackerrank.com/challenges/plus-minus
 """
 
 #!/bin/python

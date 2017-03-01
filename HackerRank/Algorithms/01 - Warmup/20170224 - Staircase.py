@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 24 15:09:58 2017
-
-@author: User
+https://www.hackerrank.com/challenges/staircase
 """
 
 #!/bin/python

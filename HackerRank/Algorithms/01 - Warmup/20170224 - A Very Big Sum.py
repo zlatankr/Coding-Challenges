@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 24 14:09:33 2017
-
-@author: User
+https://www.hackerrank.com/challenges/a-very-big-sum
 """
 
 #!/bin/python

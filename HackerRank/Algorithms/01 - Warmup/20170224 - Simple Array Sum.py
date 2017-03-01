@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 24 13:09:27 2017
-
-@author: User
+https://www.hackerrank.com/challenges/simple-array-sum
 """
 
 import sys

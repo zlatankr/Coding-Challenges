@@ -1,8 +1,6 @@
 # -*- coding: utf-8 -*-
 """
-Created on Fri Feb 24 14:18:57 2017
-
-@author: User
+https://www.hackerrank.com/challenges/diagonal-difference
 """
 
 #!/bin/python
