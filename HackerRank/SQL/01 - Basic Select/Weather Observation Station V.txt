@@ -1,0 +1,19 @@
+https://www.hackerrank.com/challenges/weather-observation-station-5
+
+(select CITY, char_length(CITY)
+
+from STATION 
+
+order by char_length(CITY) desc, CITY
+
+limit 1)
+
+union
+
+(select CITY, char_length(CITY)
+
+from STATION 
+
+order by char_length(CITY) asc, CITY
+
+limit 1)
