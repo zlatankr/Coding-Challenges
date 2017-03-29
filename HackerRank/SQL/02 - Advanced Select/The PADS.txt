@@ -1,0 +1,17 @@
+https://www.hackerrank.com/challenges/the-pads
+
+(select
+    concat(Name,'(', left(Occupation,1),')')
+
+from OCCUPATIONS
+
+order by Name);
+
+(select
+    concat('There are total ', count(*), ' ', lower(Occupation), 's.')
+
+from OCCUPATIONS
+
+group by Occupation
+
+order by count(*), Occupation)
