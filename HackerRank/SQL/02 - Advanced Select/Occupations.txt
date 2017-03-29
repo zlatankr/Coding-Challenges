@@ -1,0 +1,80 @@
+https://www.hackerrank.com/challenges/occupations
+
+set @row_number0 = 0;
+set @row_number1 = 0;
+set @row_number2 = 0;
+set @row_number3 = 0;
+set @row_number4 = 0;
+ 
+select 
+    t1.Name
+    ,t2.Name
+    ,t3.Name
+    ,t4.Name
+
+from (
+select 
+    (@row_number0:=@row_number0 + 1) AS num, Name
+from
+    OCCUPATIONS) t0
+
+left join 
+
+(select 
+    (@row_number1:=@row_number1 + 1) AS num, Name
+ 
+from
+    OCCUPATIONS
+
+where Occupation = 'Doctor'
+
+order by Name) t1
+
+on t0.num = t1.num
+
+left join
+
+(select
+    (@row_number2:=@row_number2 + 1) AS num, Name
+
+from OCCUPATIONS
+ 
+where Occupation = 'Professor'
+
+order by Name) t2
+
+on t0.num = t2.num
+
+left join
+
+(select
+    (@row_number3:=@row_number3 + 1) AS num, Name
+
+from OCCUPATIONS
+ 
+where Occupation = 'Singer'
+
+order by Name) t3
+
+on t0.num = t3.num
+
+left join
+
+(select
+    (@row_number4:=@row_number4 + 1) AS num, Name
+
+from OCCUPATIONS
+where Occupation = 'Actor'
+
+order by Name) t4
+
+on t0.num = t4.num
+
+where
+    t1.Name is not null
+    or
+    t2.Name is not null
+    or
+    t3.Name is not null
+    or 
+    t4.Name is not null

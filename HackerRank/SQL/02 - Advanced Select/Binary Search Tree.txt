@@ -1,0 +1,24 @@
+https://www.hackerrank.com/challenges/binary-search-tree-1
+
+select
+    distinct 
+    a.N
+    ,case
+        when a.P is null
+        then 'Root'
+        when leafs.N is null
+        then 'Leaf'
+        else 'Inner'
+    end    
+
+from BST a
+
+left outer join
+
+(select N, P
+
+from BST) leafs
+
+on a.N = leafs.P
+
+order by a.N
