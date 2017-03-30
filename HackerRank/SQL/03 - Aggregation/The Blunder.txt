@@ -1,0 +1,5 @@
+https://www.hackerrank.com/challenges/the-blunder
+
+select ceil(avg(Salary) - avg(convert(replace(convert(Salary, char), '0', ''), unsigned integer)))
+
+from EMPLOYEES
