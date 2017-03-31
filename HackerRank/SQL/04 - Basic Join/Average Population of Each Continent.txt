@@ -1,0 +1,12 @@
+https://www.hackerrank.com/challenges/average-population-of-each-continent
+
+select
+    t2.CONTINENT
+    ,floor(avg(t1.POPULATION))
+
+from CITY t1
+
+inner join COUNTRY t2
+on t1.COUNTRYCODE = t2.CODE
+
+group by t2.CONTINENT

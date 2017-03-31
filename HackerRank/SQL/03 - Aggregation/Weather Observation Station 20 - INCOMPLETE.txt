@@ -1,27 +1,18 @@
 https://www.hackerrank.com/challenges/weather-observation-station-20
 
-set @N = (select count(*) from STATION);
-set @one_med = (select ceil(count(*)/2) from STATION);
-set @two_med = (select count(*)/2 from STATION);
+set @row_num = 0;
 
-select
-    case
-        when @N = 1
-        then (
-            select round(LAT_N, 4)
-            
-            from STATION
-            order by LAT_N
-            LIMIT @one_med, 1
+select round(t1.LAT_N, 4)
+
+from 
+    (
+    select 
+        *
+        ,@row_num := @row_num + 1 as row_num
+    
+    from STATION
         
-        when @N = 0
-        then (
-            select round(avg(LAT_N), 4)
-            
-            from STATION
-            order by LAT_N
-            LIMIT @two_med, 2
-            
-        else 'error'
-        end
-from STATION
+    order by LAT_N
+    ) t1
+
+where t1.row_num = 250

@@ -1,0 +1,29 @@
+https://www.hackerrank.com/challenges/the-report
+
+(select
+    t1.Name
+    ,t2.Grade
+    ,t1.Marks
+
+from Students t1
+
+inner join Grades t2
+on t1.Marks >= t2.Min_Mark and t1.Marks <= t2.Max_Mark
+
+where t2.Grade >= 8
+
+order by t2.Grade desc, t1.Name);
+
+(select
+    NULL
+    ,t2.Grade
+    ,t1.Marks
+
+from Students t1
+
+inner join Grades t2
+on t1.Marks >= t2.Min_Mark and t1.Marks <= t2.Max_Mark
+
+where t2.Grade < 8
+
+order by t2.Grade desc, t1.Marks)
