@@ -1,0 +1,49 @@
+https://www.hackerrank.com/challenges/challenges
+
+set @max_challenges = (select max(x.counts) from (select hacker_id, count(challenge_id) as counts from Challenges group by hacker_id) x);
+
+select
+    j.hacker_id
+    ,j.name
+    ,z.num_challenges
+
+from Hackers j
+
+inner join 
+
+(select 
+    m1.hacker_id
+    ,m1.num_challenges
+    ,a2.dups
+ 
+from 
+
+(select 
+    a1.hacker_id
+    ,count(*) num_challenges
+
+from Challenges a1
+
+group by hacker_id) m1
+
+inner join 
+(
+select a.counts, count(*) dups
+
+from 
+    
+(select hacker_id, count(*) as counts
+ 
+from Challenges
+ 
+group by hacker_id) a
+
+group by a.counts) a2
+ 
+on m1.num_challenges = a2.counts) z
+
+on z.hacker_id = j.hacker_id
+
+where z.num_challenges = @max_challenges or z.dups = 1
+
+order by z.num_challenges desc, j.hacker_id

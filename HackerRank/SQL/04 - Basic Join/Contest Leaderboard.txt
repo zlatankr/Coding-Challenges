@@ -1,0 +1,27 @@
+https://www.hackerrank.com/challenges/contest-leaderboard
+
+select
+    h1.hacker_id
+    ,h1.name
+    ,sum(b1.max_score)
+
+from Hackers h1
+
+inner join
+
+(select
+    challenge_id
+    ,hacker_id
+    ,max(score) max_score
+
+from Submissions
+
+group by challenge_id, hacker_id) b1
+
+on h1.hacker_id = b1.hacker_id
+
+group by h1.hacker_id, h1.name
+
+having sum(b1.max_score) > 0
+
+order by sum(b1.max_score) desc, h1.hacker_id

@@ -1,0 +1,25 @@
+https://www.hackerrank.com/challenges/full-score
+
+select
+    t1.hacker_id
+    ,t2.name
+    
+
+from Submissions t1
+
+inner join Hackers t2
+on t1.hacker_id = t2.hacker_id
+
+inner join Challenges t3
+on t1.challenge_id = t3.challenge_id
+
+inner join Difficulty t4
+on t3.difficulty_level = t4.difficulty_level
+
+where t1.score = t4.score
+
+group by t1.hacker_id, t2.name
+
+having count(*) > 1
+
+order by count(*) desc, t1.hacker_id
