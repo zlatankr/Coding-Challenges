@@ -1,0 +1,74 @@
+https://www.hackerrank.com/challenges/projects
+
+set @row_num = 0;
+set @row_num2 = 0;
+
+select
+    b1.Start_Date
+    ,if(isnull(b1.null_is_end) and isnull(b1.null_is_begin), b1.End_Date, b2.End_date)
+
+from
+(
+select
+    z1.*
+    ,@row_num := @row_num + 1 as row_num
+
+from
+(
+select
+    a1.Start_Date
+    ,a1.End_Date
+    ,a2.Start_Date as null_is_begin
+    ,a3.End_Date as null_is_end
+
+from Projects a1
+
+left join Projects a2
+on a1.Start_Date = a2.End_Date
+
+left join Projects a3
+on a1.End_Date = a3.Start_Date
+
+where a2.Start_Date is null or a3.End_date is null
+
+order by a1.Start_Date
+) z1
+) b1
+left join 
+(
+select
+    z1.*
+    ,@row_num2 := @row_num2 + 1 as row_num
+
+from
+(
+select
+    a1.Start_Date
+    ,a1.End_Date
+    ,a2.Start_Date as null_is_begin
+    ,a3.End_Date as null_is_end
+
+from Projects a1
+
+left join Projects a2
+on a1.Start_Date = a2.End_Date
+
+left join Projects a3
+on a1.End_Date = a3.Start_Date
+
+where a2.Start_Date is null or a3.End_date is null
+
+order by a1.Start_Date
+) z1
+) b2
+
+on b1.row_num + 1 = b2.row_num
+
+where 
+    (b1.null_is_begin is null and b1.null_is_end is null)
+    or
+    (b1.null_is_begin is null)
+
+order by 
+    datediff(if(isnull(b1.null_is_end) and isnull(b1.null_is_begin), b1.End_Date, b2.End_date), b1.Start_Date) asc
+    ,b1.Start_Date
