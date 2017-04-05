@@ -1,0 +1,38 @@
+https://www.hackerrank.com/challenges/symmetric-pairs
+
+set @row_num1 = 0;
+set @row_num2 = 0;
+
+select distinct
+    f1.X
+    ,f1.Y
+
+from
+
+(select
+    X
+    ,Y
+    ,@row_num1 := @row_num1 + 1 as row_num
+
+from Functions
+
+order by X) f1
+
+inner join
+
+(select
+    X
+    ,Y
+    ,@row_num2 := @row_num2 + 1 as row_num
+
+from Functions
+
+order by X) f2
+
+on f1.X = f2.Y and f1.Y = f2.X
+
+where 
+    f1.row_num <> f2.row_num
+    and f1.X <= f1.Y
+
+order by f1.X

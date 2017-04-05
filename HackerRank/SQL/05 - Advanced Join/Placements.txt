@@ -1,0 +1,18 @@
+https://www.hackerrank.com/challenges/placements
+
+select s1.Name
+
+from Students s1
+
+inner join Friends f1
+on s1.ID = f1.ID
+
+inner join Packages p1
+on s1.ID = p1.ID
+
+inner join Packages p2
+on f1.Friend_ID = p2.ID
+
+where p2.Salary > p1.Salary
+
+order by p2.Salary
